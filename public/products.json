@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "name": "Лампа для солярия 'SunPro' 180W",
+        "price": 2425,
+        "old_price": null,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+1",
+        "rating": 5,
+        "reviews": 25,
+        "badge": "Новинка"
+    },
+    {
+        "id": 2,
+        "name": "Крем для загара 'Bronze Effect'",
+        "price": 990,
+        "old_price": 1200,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+2",
+        "rating": 4,
+        "reviews": 10,
+        "badge": null
+    },
+    {
+        "id": 3,
+        "name": "Защитные очки 'UV-Safe'",
+        "price": 450,
+        "old_price": null,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+3",
+        "rating": 5,
+        "reviews": 40,
+        "badge": "Хит продаж"
+    },
+    {
+        "id": 1,
+        "name": "Лампа для солярия 'SunPro' 180W",
+        "price": 2425,
+        "old_price": null,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+1",
+        "rating": 5,
+        "reviews": 25,
+        "badge": "Новинка"
+    },
+    {
+        "id": 2,
+        "name": "Крем для загара 'Bronze Effect'",
+        "price": 990,
+        "old_price": 1200,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+2",
+        "rating": 4,
+        "reviews": 10,
+        "badge": null
+    },
+    {
+        "id": 3,
+        "name": "Защитные очки 'UV-Safe'",
+        "price": 450,
+        "old_price": null,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+3",
+        "rating": 5,
+        "reviews": 40,
+        "badge": "Хит продаж"
+    },
+    {
+        "id": 1,
+        "name": "Лампа для солярия 'SunPro' 180W",
+        "price": 2425,
+        "old_price": null,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+1",
+        "rating": 5,
+        "reviews": 25,
+        "badge": "Новинка"
+    },
+    {
+        "id": 2,
+        "name": "Крем для загара 'Bronze Effect'",
+        "price": 990,
+        "old_price": 1200,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+2",
+        "rating": 4,
+        "reviews": 10,
+        "badge": null
+    },
+    {
+        "id": 3,
+        "name": "Защитные очки 'UV-Safe'",
+        "price": 450,
+        "old_price": null,
+        "image_url": "https://via.placeholder.com/280x280.png?text=Product+3",
+        "rating": 5,
+        "reviews": 40,
+        "badge": "Хит продаж"
+    }
+]
