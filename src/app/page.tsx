@@ -7,9 +7,9 @@ export default function Home() {
 
 
           <span style={{ fontSize: '120px' }}>
-            <a href="/shop">
+            <link href="/shop">
               shop
-            </a>
+            </link>
           </span>
 
 
