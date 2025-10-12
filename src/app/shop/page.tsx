@@ -4,6 +4,7 @@ import { ShopSidebar } from '@/components/ShopSidebar'; // <-- Импорт
 import { MobileFilterModal } from '@/components/MobileFilterModal'; // <-- НОВЫЙ ИМПОРТ
 import { ShopFooter } from '@/components/ShopFooter'; // <-- Импорт
 import { Product, StrapiProduct, StrapiProductData, StrapiResponse } from '@/types'; 
+import Link from 'next/link';
 import React from 'react'; 
 
 
@@ -95,7 +96,7 @@ export default async function ShopPage() {
             <main className="shop-page container mx-auto px-4">
                 
                 <nav aria-label="breadcrumb" className="breadcrumb text-sm text-gray-500 mb-5">
-                    <a href="/">Главная</a> / <a href="/shop">Магазин</a> / <span>Товары для солярия</span>
+                    <Link href="/">Главная</Link> / <a href="/shop">Магазин</a> / <span>Товары для солярия</span>
                 </nav>
 
                 <h1 className="text-3xl font-bold border-b border-gray-200 pb-2 mb-5">Товары для солярия</h1>
