@@ -11,7 +11,7 @@ export const ShopSidebar: React.FC<ShopSidebarProps> = ({ totalProductCount }) =
             
             {/* Группа Категории */}
             <div className="filter-group">
-                <h2>Категории</h2>
+                <span className="filter-group-title">Категории</span>
                 <ul>
                     <li><a href="#" className="active">Все товары ({totalProductCount})</a></li>
                     <li><a href="#">Лампы (15)</a></li>
@@ -22,7 +22,7 @@ export const ShopSidebar: React.FC<ShopSidebarProps> = ({ totalProductCount }) =
             
             {/* Группа Цена (Исправленный JSX) */}
             <div className="filter-group">
-                <h2>Фильтр по цене</h2>
+                <span className="filter-group-title">Фильтр по цене</span>
                 <div className="price-range">
                     <input type="number" defaultValue="100" />
                     <span>—</span>
@@ -33,7 +33,7 @@ export const ShopSidebar: React.FC<ShopSidebarProps> = ({ totalProductCount }) =
 
             {/* Группа Бренды */}
             <div className="filter-group">
-                <h2>Бренды</h2>
+                <span className="filter-group-title">Бренды</span> 
                 <label className='block text-gray-700 text-sm mb-1'><input type="checkbox"/> TannyMaxx</label>
                 <label className='block text-gray-700 text-sm mb-1'><input type="checkbox"/> Australian Gold</label>
                 <label className='block text-gray-700 text-sm mb-1'><input type="checkbox"/> Devoted Creations</label>

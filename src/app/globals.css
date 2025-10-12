@@ -163,10 +163,12 @@ h1 {
     border-bottom: 1px dashed var(--color-border);
 }
 
-.filter-group h2 {
+.filter-group-title {
     font-size: 1.1em;
+    font-weight: bold; /* Добавляем, чтобы сохранить стиль */
     margin-bottom: 10px;
     color: var(--color-primary);
+    display: block; /* Важно для отступов */
 }
 
 .filter-group ul {
@@ -395,12 +397,61 @@ h1 {
 .page-num:hover, .page-next:hover {
     background: var(--color-bg-light);
 }
+.filter-modal-header .close-btn {
+    /* 💡 Увеличение размера иконочного контейнера */
+    font-size: 1.5em; 
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px; /* Для удобства нажатия */
+}
 
+.filter-modal-header .close-btn svg {
+    /* 💡 Увеличение самой SVG-иконки */
+    width: 28px; 
+    height: 28px;
+    vertical-align: middle;
+}
+/* --- СТИЛИ ШАПКИ МОДАЛКИ (В БЛОКЕ @media (max-width: 768px)) --- */
+.filter-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 15px;
+}
+
+/* 💡 НОВЫЕ СТИЛИ ДЛЯ ЗАГОЛОВКА ФИЛЬТРОВ (теперь это <span>) */
+.filter-modal-header .filter-modal-title {
+    color: var(--color-primary); 
+    font-size: 1.5em; 
+    font-weight: bold;
+}
+
+/* 💡 СТИЛИ ДЛЯ КРЕСТИКА (КНОПКИ) */
+.filter-modal-header .close-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px; 
+}
+
+.filter-modal-header .close-btn svg {
+    width: 32px; 
+    height: 32px;
+    stroke: var(--color-primary); /* Красим SVG-крестик в оранжевый */
+}
+.filter-sidebar-wrapper .filter-group li a,
+.filter-sidebar-wrapper .filter-group label {
+    font-size: 1.1em; /* Увеличенный шрифт для читаемости */
+    line-height: 1.5;
+    margin-bottom: 10px; /* Увеличиваем вертикальный отступ */
+}
 /* --- 3. АДАПТИВНОСТЬ (MEDIA QUERIES) --- */
 
 /* Планшеты (≤ 992px) */
 @media (max-width: 992px) {
-    /* Меняем колонки главной сетки */
     .shop-grid {
         grid-template-columns: 200px 1fr; /* Сайдбар делаем уже */
     }
@@ -411,61 +462,168 @@ h1 {
     }
 }
 
-/* Мобильные устройства (≤ 768px) */
+/* ---------------------------------------------------- */
+/* 💡 МОБИЛЬНЫЙ / СКРЫТИЕ ФИЛЬТРОВ (≤ 768px) */
+/* ---------------------------------------------------- */
 @media (max-width: 768px) {
     
-    .header-main-bar {
-        flex-direction: column;
-        align-items: flex-start;
+    /* 1. СБРОС ГЛАВНОГО GRID-МАКЕТА (для мобильных) */
+    .shop-grid {
+        /* Убираем 250px 1fr, чтобы сайдбар не ломал макет */
+        grid-template-columns: 1fr; 
+        gap: 0;
+        display: block; /* Становится обычным блоком */
+    }
+    
+    /* 2. СЕТКА ТОВАРОВ: 2 колонки */
+    .product-grid {
+        grid-template-columns: 1fr 1fr; 
         gap: 15px;
     }
     
-    .search-form {
-        max-width: 100%;
-        margin: 0;
-        order: 3; /* Перемещаем поиск вниз */
-    }
-
-    .user-controls {
-        order: 2; /* Перемещаем элементы управления аккаунтом */
-    }
-
-    /* 🎯 КЛЮЧЕВОЕ ИЗМЕНЕНИЕ ДЛЯ МОБИЛЬНОГО ВИДА! 🎯 */
-    .shop-grid {
-        grid-template-columns: 1fr; /* Одна колонка: сайдбар сверху, контент снизу */
-        gap: 20px;
-    }
-
-    /* На мобильных сайдбар должен быть или скрыт по умолчанию, или стилизован как "кнопка-фильтр" */
-    .shop-sidebar {
-        /* В реальном проекте здесь будет логика, показывающая/скрывающая фильтр */
-        /* display: none; */ 
+    /* 3. КНОПКА ФИЛЬТРОВ */
+    .filter-toggle-button {
+        display: block; /* 💡 Показываем кнопку */
+        width: 100%;
         padding: 10px;
-        border: 1px solid var(--color-border);
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        margin-bottom: 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    /* 4. САЙДБАР: СКРЫВАЕМ ЕГО ПО УМОЛЧАНИЮ НА МОБИЛЬНЫХ */
+    .filter-sidebar-wrapper {
+        /* 💡 КЛЮЧЕВОЙ ЭФФЕКТ "ВСПЛЫВАЕТ ПОВЕРХ" */
+        position: fixed; 
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 500px; /* Ширина модального окна */
+        height: 100%;
+        background: white;
+        z-index: 1000; 
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        
+        /* 💡 СКРЫТИЕ: Сдвигаем за правый край */
+        transform: translateX(100%); 
+        transition: transform 0.3s ease-out;
+        
+        /* Выравнивание контента внутри модалки */
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
     }
     
-    .sort-controls {
-        flex-direction: column;
-        align-items: flex-start;
+    /* 5. ЛОГИКА ПОКАЗА (Применяется классом 'is-open' из React) */
+    .filter-sidebar-wrapper.is-open {
+        transform: translateX(0); /* Возвращаем на место */
+    }
+    
+    /* 6. Стили для элементов внутри модалки */
+    .filter-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 15px;
+    }
+    .filter-modal-footer {
+        margin-top: auto; /* Прижимает кнопку к низу */
+        padding-top: 15px;
+        border-top: 1px solid var(--color-border);
+    }
+    .filter-modal-footer .apply-btn {
+        width: 100%;
+        padding: 10px;
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    /* 6. Стили для элементов внутри модалки */
+    .filter-modal-header {
+        display: flex; /* 💡 Обязательно для выравнивания крестика */
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 15px;
+    }
+    .filter-modal-footer {
+        display: block; /* 💡 Обязательно для кнопки */
+        margin-top: auto; 
+        padding-top: 15px;
+        border-top: 1px solid var(--color-border);
+    }
+}
+
+/* ---------------------------------------------------- */
+/* 4. ДЕСКТОПНЫЕ СКРЫТИЯ (Для чистоты) */
+/* ---------------------------------------------------- */
+@media (min-width: 769px) {
+    /* На десктопе прячем кнопку */
+    .filter-toggle-button {
+        display: none !important;
+    }
+    /* На десктопе сайдбар должен отображаться нормально в Grid */
+    .filter-sidebar-wrapper {
+        position: static;
+        max-width: none;
+        transform: none;
+        z-index: 1;
+        /* Убираем все мобильные стили, чтобы он работал как обычный элемент Grid */
+        border: none;
+        padding: 0;
+    }
+    /* На десктопе сайдбар должен отображаться нормально в Grid */
+    .filter-sidebar-wrapper {
+        /* ... (твои существующие стили) ... */
+        
+        /* 💡 КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ: Говорим ему занять место сайдбара */
+        grid-column: 1 / 2; /* Занимает первую колонку */
+        grid-row: 1 / 2; /* Занимает первую строку */
+        
+        display: block !important;
+    }
+
+    /* 💡 ГОВОРИМ КАТАЛОГУ ЗАНЯТЬ ВТОРОЕ МЕСТО */
+    .product-catalog {
+        grid-column: 2 / 3; /* Занимает вторую колонку */
+        grid-row: 1 / 2;
+    }
+    .filter-toggle-button, 
+    .filter-modal-overlay,
+    .filter-modal-header, 
+    .filter-modal-footer {
+        display: none !important; 
+    }
+    
+    /* 💡 ПОКАЗЫВАЕМ ТОЛЬКО КОНТЕНТ */
+    .filter-sidebar-wrapper {
+        display: block !important; 
+        position: static;
+        /* ... (другие стили) ... */
+        
+        /* 💡 ДОБАВЛЯЕМ ДЕСКТОПНЫЙ PADDING/BORDER */
+        border-right: 1px solid var(--color-border); /* Если нужен разделитель */
+        padding-right: 15px; /* Немного отступа от контента */
+    }
+    
+}
+@media (max-width: 700px) {
+    
+    /* 💡 ПЕРЕОПРЕДЕЛЕНИЕ: СЕТКА ТОВАРОВ СТАНОВИТСЯ ОДНОЙ КОЛОНКОЙ */
+    .product-grid {
+        grid-template-columns: 1fr; /* 💡 СТРОГО 1 КОЛОНКА */
         gap: 10px;
     }
-
-    /* На мобильных сетка товаров становится 2-х колоночной */
-    .product-grid {
-        /* 💡 ИЗМЕНЕНИЕ: ДВЕ КОЛОНКИ */
-        /* minmax(150px, 1fr) гарантирует, что поместится 2, если ширина > 300px */
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-        gap: 15px; /* Уменьшаем отступы */
-        
-        /* 💡 Убираем justify-content: center; чтобы карточки заняли всю ширину */
-        justify-content: unset;
-        grid-template-columns: 1fr 1fr; 
-    }
-    .container {
-        padding: 0 10px;
-    }
-
-    .btn {
-        padding: 5px 8px; /* Уменьшаем кнопки */
+    
+    /* 💡 ПРИМЕР ДРУГОГО ИЗМЕНЕНИЯ */
+    .product-title {
+        font-size: 1em; /* Делаем название меньше */
     }
 }

@@ -1,10 +1,10 @@
 import { ProductCard } from '@/components/ProductCard'; 
 import { ShopHeader } from '@/components/ShopHeader'; // <-- Импорт
 import { ShopSidebar } from '@/components/ShopSidebar'; // <-- Импорт
+import { MobileFilterModal } from '@/components/MobileFilterModal'; // <-- НОВЫЙ ИМПОРТ
 import { ShopFooter } from '@/components/ShopFooter'; // <-- Импорт
 import { Product, StrapiProduct, StrapiProductData, StrapiResponse } from '@/types'; 
 import React from 'react'; 
-
 
 
 // 1. ФУНКЦИЯ ПОЛУЧЕНИЯ ДАННЫХ (Кладовщик, который теперь умеет говорить со Strapi)
@@ -103,8 +103,11 @@ export default async function ShopPage() {
 
                 <div className="shop-grid">
                     
-                    {/* 2.1. SIDEBAR */}
-                    <ShopSidebar totalProductCount={products.length} /> {/* <-- Передаем общее количество товаров */}
+                    {/* 💡 НОВЫЙ КОМПОНЕНТ МОДАЛКИ: ОН ЗАМЕНЯЕТ ДЕСКТОПНЫЙ САЙДБАР В GRID! */}
+                    <MobileFilterModal 
+                        totalProductCount={products.length} 
+                        currentFilterCount={products.length} // Пока что используем общее количество
+                    /> 
 
                     {/* 2.2. CONTENT (Сетка товаров) */}
                     <section className="product-catalog">

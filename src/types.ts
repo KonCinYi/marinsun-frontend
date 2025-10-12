@@ -89,3 +89,9 @@ export interface StrapiResponse {
     data: StrapiProduct[]; // Теперь это массив плоских продуктов!
     meta: any;
 }
+
+// 💡 НОВЫЙ ТИП: Для компонента FilterModal
+export interface MobileFilterModalProps {
+    totalProductCount: number;
+    currentFilterCount: number; 
+}
