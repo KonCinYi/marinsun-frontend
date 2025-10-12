@@ -87,7 +87,7 @@ export interface StrapiProductData {
 // --- Г. Главный тип ответа от API Strapi ---
 export interface StrapiResponse {
     data: StrapiProduct[]; // Теперь это массив плоских продуктов!
-    meta: any;
+     meta: unknown;
 }
 
 // 💡 НОВЫЙ ТИП: Для компонента FilterModal

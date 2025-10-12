@@ -75,10 +75,9 @@ export default async function ShopPage() {
 
     try {
         products = await getProducts();
-    } catch (e: any) {
-        // Мы используем console.error, чтобы видеть ошибку в терминале Next.js
-        console.error("Ошибка при fetch данных:", e);
-        error = e.message;
+    } catch (e: unknown) {
+        // 💡 Проверка, чтобы получить сообщение об ошибке, если оно есть
+        error = (e instanceof Error) ? e.message : 'Неизвестная ошибка загрузки данных.';
     }
 
     if (error) {
